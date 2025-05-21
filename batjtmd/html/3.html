@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5语义化标签全景示例</title>
+    <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header 样式 */
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* 导航样式 */
+        nav {
+            background: #34495e;
+            padding: 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+
+        /* 主体内容布局 */
+        main {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 文章区块 */
+        article {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 章节样式 */
+        section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+
+        /* 侧边栏 */
+        aside {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        /* 图表组合 */
+        figure {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        figcaption {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 0.5rem;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        address {
+            font-style: normal;
+            text-align: center;
+        }
+
+        time {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>网站标题</h1>
+        <p>副标题说明</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">产品</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article>
+            <header>
+                <h2>文章标题</h2>
+                <time datetime="2025-05-17">发布于2025年5月17日</time>
+            </header>
+
+            <section>
+                <h3>章节标题</h3>
+                <p>文章内容段落...</p>
+                <figure>
+                    <img src="image.png" alt="示例图片" style="width:80%">
+                    <figcaption>图1: 示例说明</figcaption>
+                </figure>
+            </section>
+
+            <section>
+                <h3>另一个章节</h3>
+                <p>更多内容...</p>
+            </section>
+        </article>
+
+        <aside>
+            <h3>相关链接</h3>
+            <ul>
+                <li><a href="#">链接1</a></li>
+                <li><a href="#">链接2</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <address>
+            联系我们: <a href="mailto:contact@example.com">contact@example.com</a><br>
+            8 地址: 学府路56号
+        </address>
+        <p>&copy; 2025 公司名称</p>
+    </footer>
+</body>
+
+</html>
