@@ -32,3 +32,18 @@
   block 块级  独占一行
   inline 行内 不可以设置宽高
 
+  面向对象的css
+  多态 
+  复用  多类名
+
+- 定位
+  - position 定位
+    static 静态定位  不定位
+    relative 相对定位
+       - 子元素相对它定位
+       - 相对于自身的位置定位
+
+    absolute 绝对定位  找到离它(管着它的)最近的position不为static的属性定位 直到body为止
+      - 
+    .container absolute 相对于body定位
+

@@ -13,3 +13,5 @@
      github gitee身份
    - git config --global user.name "qwertyu12iop"
    - git config --global user.email
+
+   - new 
