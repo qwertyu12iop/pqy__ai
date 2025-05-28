@@ -7,3 +7,11 @@
 ['h', 'e', 'l', 'l', 'o'].reverse()
 
 console.log("hello" == new String("hello"))
+
+
+console.log('hello'.split(''));
+
+
+let s = 'abc';
+// s.prop = 123;
+console.log((s.prop=123)); // undefined
