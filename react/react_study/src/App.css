@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  background-color: aqua;
+  color: aliceblue;
+  padding: 10px;
+  margin-bottom: 20px;
+}
