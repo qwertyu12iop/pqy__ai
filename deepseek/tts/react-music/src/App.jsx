@@ -3,9 +3,9 @@ import './App.css'
 
 function App() {
   //火山引擎tts 配置文件
-  const TOKEN ='J-WsaNLRscf18t2OvNsbJI-YoCjhlizA'
-  const APP_ID = '2847048405'
-  const CLUSTER_ID ='volcano_tts'
+  // const TOKEN ='J-WsaNLRscf18t2OvNsbJI-YoCjhlizA'
+  // const APP_ID = '2847048405'
+  // const CLUSTER_ID ='volcano_tts'
 
   //代码的可读性高于一切
   const [prompt,setPromot]=useState('大家好，我是皮企芸')
