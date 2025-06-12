@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="repos"></ul>
+    <button type="button" id="btn">加载</button>
+    <script>
+        //异步任务  网络请求
+        //事件 页面加载的一个事件 资源加载完了
+        document.getElementById('btn').addEventListener('click', () => {
+                console.log('clicked');
+                
+        })
+        document.addEventListener('DOMContentLoaded', async () => {
+            //console.log('DOMContentLoaded');
+            //DOM ready了， 可以尽快发送请求
+            //执行的流程
+            //声明函数是async  函数内部的await 会等待异步任务完成
+            const res =await fetch('https://api.github.com/users/qwertyu12iop/repos')
+            const data = await res.json()
+        //     .then(res => res.json())//解析JSON数据完成
+        //    .then(data => {//数据返回JSON
+            console.log(data);
+            document.getElementById('repos').innerHTML = data.map(item => {
+                return `<li>
+                <a href="${item.html_url}" target="_blank">
+                    ${item.name}</a>
+                    </li>`
+            }).join('')
+          // })
+        })
+        window.onload = function () {
+            console.log('onload');
+
+        }
+
+    </script>
+</body>
+
+</html>
