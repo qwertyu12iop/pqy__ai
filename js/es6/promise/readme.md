@@ -29,3 +29,7 @@
   }
   - .then() 原型方法
   - resolve() then 函数执行
+
+- promise .then 升级到 async await 
+  async 用于修饰函数，函数里面有异步任务
+  await 等待异步任务完成，异步变同步
