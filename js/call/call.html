@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //console.log(Function.prototype,Function.__proto__);
+        function gretting(...args) {
+            console.log(args, arguments[0], arguments[1]);
+
+            //console.log([...arguments],Array.from(arguments));
+            return `hello,I am ${this.name}.`;
+        }
+        //...args  rest 剩余运算符  展开运算符
+        Function.prototype.myCall = function (context, ...args) {
+            console.log('//////');
+            if (context == null || context == undefined) {
+                context = window;
+            }
+            if (typeof this !== 'function') {
+                throw new TypeError('this is not a function')
+            }
+            //函数要运行
+            //es6 新数据类型  唯一 绝对不会重复 Symbol
+            const fnKey = Symbol('fn')
+            //this 运行 内部this 指向的是context
+            //如果this 是context上面的方法的时候
+            //不要覆盖 context 上面的属性
+            context[fnKey] = this;
+            //console.log(context);
+            //收集参数 
+           // console.log(args);
+           //js 对象的动态性
+           const result = context[fnKey](...args);
+           //context 被污染了，把fnKey 给删除掉
+           delete context[fnKey];
+           return result
+            
+        }
+        var obj={
+            name:'lisi',
+            fn:function(){
+
+            }
+        }
+        //对象的方法调用
+       console.log(gretting.myCall(obj,1,2,3,4));
+        gretting.myCall(obj,1,2,3,4)
+    </script>
+</body>
+
+</html>
