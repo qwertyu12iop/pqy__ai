@@ -29,5 +29,10 @@
   - 解决了性能问题  首屏加载速度
   - onScroll 触发太频繁 JS 
   - forEach imgs 
+  - getBoundingClientRect 触发回流
 - 防抖 截流
+- IntersectionObserver
+  - observer 观察 异步的，不是同步的 浏览器的后台
+  - intersection  rect和可视区的交叉
+  - 不再需要onScroll  不需要节流
 
