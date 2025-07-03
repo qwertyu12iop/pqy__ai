@@ -1,9 +1,11 @@
-#selectImage{
+#selectImage {
     display: none;
 }
-.input{
+
+.input {
     width: 200px;
-} 
-.preview img{
-    min-width: 100%;
+}
+
+.preview img {
+    max-width: 100%;
 }
