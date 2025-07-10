@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私有属性和方法的封装</title>
+</head>
+<body>
+    <script>
+        function Book(title, author, year){
+            let _title = title;//以_开头的属性是私有属性  内部属性  有利于可读性
+            let _author = author;
+            let _year = year;
+            this.getTitle=function(){
+                return _title;
+            }
+            function getFullTitle(){
+                return `${_title} by ${_author}`
+            }
+            this.getFullInfo=function(){
+                return `${getFullTitle()},published in ${_year}`
+            }
+            this.getAuthor=function(){
+                return _author;
+            }
+            this.getYear=function(){
+                return _year;
+            }
+            // 类的开发者，和类的使用者，可能是两拨人
+            this.updataYear=function(newYear){
+                if(typeof newYear ==='number'&&newYear>0){
+                    _year=newYear;
+                }else{
+                    console.error('Invalid year')
+                }
+            }
+
+
+        }
+        let book=new Book('JS高级程序设计', 'Nicholas', 2009)
+        // console.log(book._title);
+        // console.log(book.getTitle());
+        // console.log(book.getFullInfo());
+        book.updataYear(2025)
+        console.log(book.getYear())        
+        
+        
+    </script>
+</body>
+</html>
