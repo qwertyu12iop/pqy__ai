@@ -96,7 +96,33 @@
     - 频繁的单位换算  如何自动化？
       解决方案  pnpm i -D postcss postcss-pxtorem
       配置文件  postcss.config.js
+      postcss是css 预编译器 很强大
+      vite 自动读取postcss.config.js 将css文件编译
+      px -> rem
 ## git 提交规范
 - 项目初始化
-## 
+## g功能模块
+- UI组件库
+   - react-vant 第三方组件库 70%的组件已经有了 不用写
+- 配置路由及懒加载
+   - 懒加载
+   - 路由守卫
+   - Layout组件
+       - 嵌套路由Outlet 分组路由配置
+       - 网页有几个模板 Layout
+             - Route 不加path 对应的路由自动选择
+             - tabbar 模板
+             - blank 模板
+   - tabbar 
+      - react-vant + @react-vant/icons 
+      - value + onChange 是响应式的
+      - 直接点击链接分享 active 的设置
 
+- 自定义hooks
+    - useTitle 一定要设置
+
+- es6 特性使用
+    tabbar的高亮
+    - arr.findIndex()
+    - str.startsWith()
+    - promise
