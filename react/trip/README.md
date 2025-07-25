@@ -101,7 +101,7 @@
       px -> rem
 ## git 提交规范
 - 项目初始化
-## g功能模块
+## 功能模块
 - UI组件库
    - react-vant 第三方组件库 70%的组件已经有了 不用写
 - 配置路由及懒加载
@@ -117,7 +117,30 @@
       - react-vant + @react-vant/icons 
       - value + onChange 是响应式的
       - 直接点击链接分享 active 的设置
-
+- chatbot模块
+    - llm模块 chat封装
+    - 迭代chat,支持任意模型
+## 项目亮点和难点
+- 前端智能
+    - chat函数
+    - 对各家模型都比较感兴趣，升级为kimiChat，doubaochat....灵活
+       性能，能力，性价比
+       随意切换大模型,通过参数抽象
+    - 文生图
+       - 优化prompt 设计，
+- 原子css
+    - App.css 里面添加通用样式
+    - 各自模块里的module.css 不影响别的组件
+    - lib-flexible 移动端适配
+    - postcss pxtorem插件 快速还原设计稿
+    - 原子类的css
+        一个元素按功能逻辑拆分成多个类，和原子一样
+        元素的样式就可以由这些原子类组合而成
+        样式复用的更好，以后几乎可以不用写样式
+## 项目遇到过什么问题，怎么解决
+- chat messages 遇到message覆盖问题
+- 闭包陷阱问题
+    一次事件里面,两次setMessages()
 - 自定义hooks
     - useTitle 一定要设置
 
@@ -126,3 +149,11 @@
     - arr.findIndex()
     - str.startsWith()
     - promise
+
+- 项目迭代
+    - 功能由浅入深
+    - chatbot deepseek 简单chat
+    - deepseek-r1 推理模型
+    - 流式输出
+    - 上下文 LRU
+    - coze 工作流接口调用
