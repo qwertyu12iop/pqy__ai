@@ -157,3 +157,10 @@
     - 流式输出
     - 上下文 LRU
     - coze 工作流接口调用
+
+## 通用组件开发
+- Loading
+    - 居中方案
+      position:fixed+tlrb0+margin:auto
+    - React.memo 无状态组件，不重新渲染
+    - animation
