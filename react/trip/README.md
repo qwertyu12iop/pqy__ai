@@ -120,6 +120,11 @@
 - chatbot模块
     - llm模块 chat封装
     - 迭代chat,支持任意模型
+-Search模块
+    - 防抖
+    - api
+      GoogleSuggest
+    - localStorage
 ## 项目亮点和难点
 - 前端智能
     - chat函数
