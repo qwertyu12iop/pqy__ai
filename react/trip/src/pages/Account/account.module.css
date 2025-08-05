@@ -29,3 +29,30 @@
 .ml4{
     margin-left: 16px;
 }
+/* 九宫格 grid布局  行列同时布局*/
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列 */
+    padding: 40px;
+    margin: 16px 32px;
+    background-color: #fff;
+}
+.gridItem{
+    display: flex;
+    flex-direction: column; /* 垂直布局 */
+    align-items: center; /* 水平居中 */
+    justify-content: center; /* 垂直居中 */
+    padding: 24px;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+.gridItem .text{
+    font-size:28px;
+    color: #333;
+}
+.gridItem.icon{
+    font-size:48px;
+    margin-bottom: 16px;
+}
