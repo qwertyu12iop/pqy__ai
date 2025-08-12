@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas 图片灰度处理</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .canvas-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        canvas {
+            border: 2px solid #333;
+            width: 400px;
+            height: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h3 {
+            margin: 0;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Canvas 图片灰度效果演示</h2>
+
+    <div class="canvas-container">
+        <div>
+            <h3>原图</h3>
+            <canvas id="originalCanvas"></canvas>
+        </div>
+        <div>
+            <h3>灰度图</h3>
+            <canvas id="grayscaleCanvas"></canvas>
+        </div>
+    </div>
+
+    <button id="convertBtn">转为灰度图</button>
+
+    <script>
+        // 获取两个画布元素
+        const originalCanvas = document.getElementById('originalCanvas');
+        const grayscaleCanvas = document.getElementById('grayscaleCanvas');
+
+        // 设置画布尺寸（重要：避免拉伸）
+        originalCanvas.width = 400;
+        originalCanvas.height = 300;
+        grayscaleCanvas.width = 400;
+        grayscaleCanvas.height = 300;
+
+        // 获取绘图上下文
+        const originalCtx = originalCanvas.getContext('2d');
+        const grayscaleCtx = grayscaleCanvas.getContext('2d');
+
+        // 加载图片
+        const img = new Image();
+        // 跨域设置（如果图片来自外部域名）
+        img.crossOrigin = "anonymous";
+        // 使用示例图片
+        img.src = 'https://picsum.photos/800/600';
+
+        // 图片加载完成后绘制到原始画布
+        img.onload = function () {
+            // 绘制图片并适应画布尺寸
+            originalCtx.drawImage(
+                img,
+                0, 0,
+                originalCanvas.width,
+                originalCanvas.height
+            );
+
+            // 先在灰度画布上绘制原图作为初始状态
+            grayscaleCtx.drawImage(
+                img,
+                0, 0,
+                grayscaleCanvas.width,
+                grayscaleCanvas.height
+            );
+        };
+
+        // 转换为灰度图的函数
+        function convertToGrayscale() {
+            // 获取原始画布的像素数据
+            const imageData = originalCtx.getImageData(
+                0, 0,
+                originalCanvas.width,
+                originalCanvas.height
+            );
+
+            // 获取像素数组（每个像素由4个值组成：R, G, B, A）
+            const data = imageData.data;
+
+            // 遍历所有像素（每次跳过4个值，即一个完整像素）
+            for (let i = 0; i < data.length; i += 4) {
+                // 获取当前像素的RGB值
+                const red = data[i];     // R通道
+                const green = data[i + 1]; // G通道
+                const blue = data[i + 2];  // B通道
+
+                // 计算灰度值（RGB平均值）
+                const gray = Math.round((red + green + blue) / 3);
+
+                // 将RGB通道都设置为灰度值（保持Alpha通道不变）
+                data[i] = gray;       // 红色通道
+                data[i + 1] = gray;   // 绿色通道
+                data[i + 2] = gray;   // 蓝色通道
+                // data[i + 3] 是Alpha通道，保持不变
+            }
+
+            // 将处理后的像素数据绘制到灰度画布
+            grayscaleCtx.putImageData(imageData, 0, 0);
+        }
+
+        // 绑定按钮点击事件
+        document.getElementById('convertBtn').addEventListener('click', convertToGrayscale);
+    </script>
+</body>
+
+</html>
