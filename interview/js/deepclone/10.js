@@ -1,0 +1,17 @@
+// const arr=[1,2,3];
+// const newArr=[...arr];
+
+// let arr2= arr.slice();
+// arr2[1]='b'
+// console.log(arr2,arr);
+//浅拷贝
+const arr3=[[1,2],[3,4],[5,[6,7]]]
+let arr4=arr3.slice();
+arr4[2][1][1]=99;
+console.log(arr4,arr3);
+let arr5=arr3.concat();
+arr5[2][1][1]=88;
+console.log(arr5,arr3);
+
+
+
