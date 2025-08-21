@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="start">开始</button>
+    <button id="pause">暂停</button>
+
+    <script>
+
+        const sleep = (ms, signal) => new Promise((resolve, reject) => {
+            // 启动定时器，正常情况下ms后执行resolve
+            const timer = setTimeout(resolve, ms);
+
+            // 监听中止信号
+            signal.addEventListener('abort', () => {
+                // 清除定时器，避免resolve被执行
+                clearTimeout(timer);
+                // 用reject抛出中止错误，通知外部流程
+                reject(new DOMException("操作已中止", "AbortError"));
+            }, { once: true }); // once: true确保回调只执行一次，避免内存泄漏
+        });
+        async function trafficLight(signal) {
+            // 循环执行，直到信号被中止
+            while (!signal.aborted) {
+                for (const { color, ms } of seq) {
+                    // 每次切换颜色前检查信号，若已中止则退出
+                    if (signal.aborted) return;
+
+                    console.log(color); // 输出当前颜色
+                    try {
+                        // 等待指定时长，若期间收到中止信号，会抛出AbortError
+                        await sleep(ms, signal);
+                    } catch (err) {
+                        // 捕获中止错误，退出函数
+                        if (err.name === "AbortError") return;
+                        // 非中止错误则重新抛出，交给上层处理
+                        throw err;
+                    }
+                }
+            }
+        }
+        const seq = [
+            { color: 'red', ms: 1000 },
+            { color: 'yellow', ms: 3000 },
+            { color: 'green', ms: 2000 }
+        ]
+
+        let controller = null;
+
+        // 点击"开始"按钮
+        document.getElementById('start').addEventListener('click', () => {
+            // 若已有控制器且未中止，则不重复启动
+            if (controller && !controller.signal.aborted) return;
+
+            // 创建新控制器
+            controller = new AbortController();
+            // 启动红绿灯，传入信号
+            trafficLight(controller.signal);
+        });
+
+        // 点击"暂停"按钮
+        document.getElementById('pause').addEventListener('click', () => {
+            // 若控制器存在，发送中止信号
+            if (controller) controller.abort();
+        });
+    </script>
+</body>
+
+</html>
